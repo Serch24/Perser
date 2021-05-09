@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home de la página
-Route::view('/', 'home');
+Route::get('/',[HomeController::class,'index']); 
+
+Route::get('/product/create', function () {
+    return view('products.upload');
+});
+Route::get('/product/{product}', [ProductsController::class, 'show']);
+Route::post('/product',[ProductsController::class, 'store']);
+
+
 Auth::routes();
