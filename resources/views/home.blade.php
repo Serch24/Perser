@@ -10,13 +10,13 @@
         <div class="card-columns">
             @foreach($products as $product) 
                 <div class="card">
-                    <img src="{{$product->image}}" alt="teto alt">
                     <div class="card-body">
+                    <img src="{{$product->image}}" class="card-img-top" alt="teto alt">
                         <p class="card-title">{{$product->name}}</p>
                         <div class="card-text">
                             {{$product->description}}
                         </div>
-                        <p>{{$product->price}}</p>
+                        <p>{{$product->price}}€</p>
                         <a href="/product/{{$product->id}}" class="btn btn-primary">Ver Producto</a>
                     </div>
                 </div>

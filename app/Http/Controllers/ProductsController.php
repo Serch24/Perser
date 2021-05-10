@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -14,7 +20,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.upload');
     }
 
     /**
@@ -25,8 +31,27 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //ver por que no se manda la request
-        dd($request);
+        $request->validate([
+            'file' => 'image',
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'description' => 'required',
+        ]);
+
+        $url = null;
+        if($request->file('file') !== null){
+            $img_url = $request->file('file')->store('public/imagenes');
+            $url = Storage::url($img_url);
+        }
+
+        Products::create([
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+            'description' => $request->input('description'),
+            'image' => $url ?? null,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -72,5 +97,15 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function buy(Products $product)
+    {
+        dd($product);
+    }
+
+    public function cart(Products $product)
+    {
+        dd($product);
     }
 }

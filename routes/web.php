@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home de la página
-Route::get('/',[HomeController::class,'index']); 
+Route::get('/',[HomeController::class,'index'])->name('home'); 
 
-Route::get('/product/create', function () {
-    return view('products.upload');
-});
+Route::get('/product/create', [ProductsController::class, 'create']);
 Route::get('/product/{product}', [ProductsController::class, 'show']);
+Route::get('/product/buy/{product}', [ProductsController::class, 'buy'])->name('buy');
+Route::get('/product/cart/{product}', [ProductsController::class, 'cart'])->name('cart');
 Route::post('/product',[ProductsController::class, 'store']);
 
 
