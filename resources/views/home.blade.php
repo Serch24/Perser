@@ -6,7 +6,7 @@
             <a href="/product/create" class="btn btn-primary">Crear producto</a>
         </div>
     @endauth
-    <div class="container-fluid">
+    <div class="container">
         <div class="card-columns">
             @foreach($products as $product) 
                 <div class="card">
@@ -21,6 +21,13 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center my-3">
+                    {{ $products->links() }}
+                </div>
+            </div>
         </div>
     </div>
 @endsection

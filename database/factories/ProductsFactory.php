@@ -22,10 +22,10 @@ class ProductsFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->title(),
+            'name' => $this->faker->word(),
             'price' => $this->faker->numberBetween(100,100000),
-            'description' => $this->faker->paragraph(5),
-            'image' => $this->faker->imageUrl(640,480,'cats'),
+            'description' => $this->faker->text(500),
+            'image' => $this->faker->imageUrl($this->faker->numberBetween(300,1000),$this->faker->numberBetween(300,1000),'cat'),
         ];
     }
 }
