@@ -103,6 +103,8 @@
                                         <button class="btn btn-link nav-link">Logout</button>
                                     </li>
                                 </form>
+
+                                <a href="{{route('profile',['user' => Auth::user()->id])}}" class="nav-link">profile</a>
                             @endif
                         </ul>
                     </div>

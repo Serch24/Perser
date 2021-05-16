@@ -185,3 +185,10 @@ a.article:hover {
     top: 0;
     right: 0;
 }
+
+/* table style */
+.table .thead-light th {
+    color: #fff !important;
+    background-color: #6d7fcc !important;
+    border-color: #8497ee !important;
+}

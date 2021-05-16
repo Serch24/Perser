@@ -64,7 +64,7 @@
                         <div class="form-group row">
                             <label for="file" class="col-md-4 col-form-label text-md-right">Imagen</label>
                             <div class="col-md-6">
-                                <input id="file" type="file" name="file" required autocomplete="file">
+                                <input id="file" type="file" name="file" autocomplete="file">
                             </div>
                         </div>
 

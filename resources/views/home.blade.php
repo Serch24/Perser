@@ -6,7 +6,7 @@
             <a href="/product/create" class="btn btn-primary">Crear producto</a>
         </div>
     @endauth
-    <div class="container">
+    <div class="container-fluid">
         <div class="card-columns">
             @foreach($products as $product) 
                 <div class="card">

@@ -7,8 +7,15 @@
                 <h5 class="card-title text-center">{{$product->name}}</h5>
                 <p class="card-text">{{$product->description}}</p>
                 <p>{{$product->price}}</p>
-                <a href="{{route('buy',['product' => $product->id])}}" class="btn btn-primary">Comprar</a>
-                <a href="{{route('cart',['product' => $product->id])}}" class="btn btn-secondary">Añadir al carrito</a>
+                <form action="{{route('buy',['product' => $product->id])}}" method="post">
+                    @csrf
+                    <button class="btn btn-primary">Comprar</button>
+                </form>
+
+                <form action="{{route('cart',['product' => $product->id])}}" method="post">
+                    @csrf
+                    <button class="btn btn-secondary">Carrito</button>
+                </form>
             </div>
         </div>
     </div>

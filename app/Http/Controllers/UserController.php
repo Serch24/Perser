@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductsController extends Controller
+class UserController extends Controller
 {
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -20,7 +25,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.upload');
+        //
     }
 
     /**
@@ -31,27 +36,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'file' => 'image',
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'description' => 'required',
-        ]);
-
-        $url = null;
-        if($request->file('file') !== null){
-            $img_url = $request->file('file')->store('public/imagenes/products');
-            $url = Storage::url($img_url);
-        }
-
-        Products::create([
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'description' => $request->input('description'),
-            'image' => $url ?? null,
-        ]);
-
-        return redirect()->route('home');
+        
     }
 
     /**
@@ -60,9 +45,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $product)
+    public function show(User $user)
     {
-        return view('products.show', ['product' => $product]);
+        return view('user.show',['user' => $user]);
     }
 
     /**
@@ -85,7 +70,12 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request);
+        $url = null;
+        if($request->file('file') !== null){
+            $img_url = $request->file('file')->store('public/imagenes/user_profiles');
+            $url = Storage::url($img_url);
+        }
     }
 
     /**
@@ -97,15 +87,5 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function buy(Products $product)
-    {
-        return view('products.form',["product" => $product]);
-    }
-
-    public function cart(Products $product)
-    {
-        dd($product);
     }
 }

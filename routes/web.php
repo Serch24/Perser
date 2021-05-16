@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 // Home de la página
 Route::get('/',[HomeController::class,'index'])->name('home'); 
+Auth::routes();
 
+// products
 Route::get('/product/create', [ProductsController::class, 'create']);
 Route::get('/product/{product}', [ProductsController::class, 'show']);
-Route::get('/product/buy/{product}', [ProductsController::class, 'buy'])->name('buy');
-Route::get('/product/cart/{product}', [ProductsController::class, 'cart'])->name('cart');
+
+Route::post('/product/cart/{product}', [ProductsController::class, 'cart'])->name('cart');
+Route::post('/product/buy/{product}', [ProductsController::class, 'buy'])->name('buy');
 Route::post('/product',[ProductsController::class, 'store']);
 
+// Users
 
-Auth::routes();
+Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile');
