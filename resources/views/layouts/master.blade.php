@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <script src="{{asset('app.js')}}"></script>
 </head>
-<body>
+<body class="bg-custome">
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">

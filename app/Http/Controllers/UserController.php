@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +53,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        if($user->id !== Auth::user()->id){
+            return back();
+        }
         return view('user.show',['user' => $user]);
     }
 

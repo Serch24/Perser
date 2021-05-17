@@ -192,3 +192,8 @@ a.article:hover {
     background-color: #6d7fcc !important;
     border-color: #8497ee !important;
 }
+
+/* body background */
+.bg-custome{
+    background-color: #E2E8F0 !important;
+}
