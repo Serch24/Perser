@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hasUploadProducts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,10 @@ class UserController extends Controller
         if($user->id !== Auth::user()->id){
             return back();
         }
-        return view('user.show',['user' => $user]);
+
+        $products = $user->uploadProducts()->get();
+
+        return view('user.show',['user' => $user, 'products' => $products]);
     }
 
     /**

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use App\Http\Controllers\Controller;
+use App\Models\hasUploadProducts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
@@ -31,6 +33,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $currentUser = Auth::user()->id;
         $request->validate([
             'file' => 'image',
             'name' => 'required',
@@ -44,11 +47,16 @@ class ProductsController extends Controller
             $url = Storage::url($img_url);
         }
 
-        Products::create([
+        $product = Products::create([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
             'image' => $url ?? null,
+        ]);
+
+        hasUploadProducts::create([
+            'user_id' => $currentUser,
+            'product_id' => $product->id
         ]);
 
         return redirect()->route('home');
@@ -71,9 +79,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Products $product)
     {
-        //
+        return view('products.edit',['product' => $product]);
     }
 
     /**

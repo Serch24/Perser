@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function uploadProducts(){
+        return $this->belongsToMany(Products::class,'has_upload_products','user_id','product_id');
+    }
 }

@@ -23,7 +23,7 @@ Auth::routes();
 
 // products
 Route::get('/product/create', [ProductsController::class, 'create']);
-Route::get('/product/{product}', [ProductsController::class, 'show']);
+Route::get('/product/{product}', [ProductsController::class, 'show'])->name('show-product');
 
 Route::post('/product/cart/{product}', [ProductsController::class, 'cart'])->name('cart');
 Route::post('/product/buy/{product}', [ProductsController::class, 'buy'])->name('buy');
