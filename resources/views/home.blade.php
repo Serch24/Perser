@@ -3,7 +3,7 @@
     <h1 class="text-center">Perser</h1>
     @auth
         <div class="d-flex justify-content-end mb-3">
-            <a href="/product/create" class="btn btn-primary">Crear producto</a>
+            <a href="/product/create" class="btn btn-primary">Upload your product</a>
         </div>
     @endauth
     <div class="container-fluid">
@@ -13,11 +13,11 @@
                     <div class="card-body">
                     <img src="{{$product->image}}" class="card-img-top" alt="teto alt">
                         <p class="card-title">{{$product->name}}</p>
-                        <div class="card-text">
+                        <div class="card-text text-wrap h5">
                             {{$product->description}}
                         </div>
-                        <p>{{$product->price}}€</p>
-                        <a href="/product/{{$product->id}}" class="btn btn-primary">Ver Producto</a>
+                        <p class="text-success font-weight-bold">{{$product->price}}€</p>
+                        <a href="/product/{{$product->id}}" class="btn btn-primary">See product</a>
                     </div>
                 </div>
             @endforeach

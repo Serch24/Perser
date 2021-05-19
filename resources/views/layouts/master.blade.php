@@ -98,14 +98,25 @@
                                         <i class="fas fa-sign-out-alt"></i>Register</a>
                                 </li>
                             @else
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <li class="nav-item">
-                                        <button class="btn btn-link nav-link">Logout</button>
-                                    </li>
-                                </form>
+                                <div class="row justify-content-md-center ">
+                                    <div class="col">
+                                        <a href="{{route('profile',['user' => Auth::user()->id])}}" data-placement='bottom' data-toggle="tooltip" title="Profile" class="nav-link">
+                                            <i class="fas fa-user-alt fa-2x text-primary" ></i>
+                                        </a>
+                                    </div>
 
-                                <a href="{{route('profile',['user' => Auth::user()->id])}}" class="nav-link">profile</a>
+                                    <div class="col">
+                                        <form action="/logout" method="post" id="logOutForm">
+                                            @csrf
+                                            <li class="nav-item" data-toggle="modal" data-target="#close">
+                                                <button class="btn btn-link nav-link" data-placement='bottom' data-toggle="tooltip" title="Sign out" id="logOut">
+                                                    <i class="fas fa-sign-out-alt fa-2x text-primary"></i>
+                                                </button>
+                                            </li>
+                                            @include('bootstrapjs.modal-close')
+                                        </form>
+                                    </div>
+                                </div>
                             @endif
                         </ul>
                     </div>
@@ -119,9 +130,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script>
+        // inicializar tooltips
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        })
+        });
+
+        // modals 
+        let logOut = document.querySelector('#logOut');
+        let yesModal= document.querySelector('#yesModal');
+        logOut.addEventListener('click', (event) => {
+            event.preventDefault();
+        });
+
+        yesModal.addEventListener('click',() =>{
+            document.querySelector('#logOutForm').submit();
+        });
+
+
     </script>
 </body>
 </html>
