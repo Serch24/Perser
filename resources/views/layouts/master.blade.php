@@ -100,7 +100,7 @@
                             @else
                                 <div class="row justify-content-md-center ">
                                     <div class="col">
-                                        <a href="{{route('profile',['user' => Auth::user()->id])}}" data-placement='bottom' data-toggle="tooltip" title="Profile" class="nav-link">
+                                        <a href="{{route('profile')}}" data-placement='bottom' data-toggle="tooltip" title="Profile" class="nav-link">
                                             <i class="fas fa-user-alt fa-2x text-primary" ></i>
                                         </a>
                                     </div>
