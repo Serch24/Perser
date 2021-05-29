@@ -81,19 +81,21 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name'          => ['required','string'],
-            'email'         => ['required'],
-            'last_name'     => ['string','nullable'],
-            'oldPassword'   => ['nullable'],
-            'newPassword'   => ['nullable', Password::min('8')->mixedCase()],
-            'file'          => ['image' , 'dimensions:min_width=320,min_height=320']
+            'name'          => ['sometimes', 'required', 'string'],
+            'email'         => ['sometimes', 'required'],
+            'last_name'     => ['sometimes', 'string','nullable'],
+            'oldPassword'   => ['required_with:newPassword'],
+            'newPassword'   => ['required_with:oldPassword', Password::min('8')->mixedCase()],
+            'file'          => ['sometimes', 'required', 'image' , 'mimes:jpeg,png,jpg,gif,svg', 'dimensions:max_width=641,max_height=427']
         ]);
 
         // get the user in the input hidden
         $user = User::find($request->user);
 
-        if(!Hash::check($request->input('oldPassword'), $user->password )){
-            return Redirect::back()->withErrors(['The old password is incorrect']);
+        if($request->has('oldPassword')){
+            if(!Hash::check($request->input('oldPassword'), $user->password )){
+                return Redirect::back()->withErrors(['The old password is incorrect']);
+            }
         }
 
         $url = null;
@@ -102,12 +104,25 @@ class UserController extends Controller
             $url = Storage::url($img_url);
         }
 
-        User::where('id', $request->user)->update(['name' => $request->input('name'),
-                        'email' => $request->input('email'),
-                        'last_name' => $request->input('last_name'),
-                        'password' => Hash::make($request->input('newPassword')),
-                        'profile_image' => $url
-                    ]);
+        if($request->has('name')){
+            User::where('id', $request->user)->update(['name' => $request->input('name')]);
+        }
+
+        if($request->has('last_name')){
+            User::where('id', $request->user)->update(['last_name' => $request->input('last_name')]);
+        }
+
+        if($request->has('email')){
+            User::where('id', $request->user)->update(['email' => $request->input('email')]);
+        }
+
+        if($request->has('oldPassword') && $request->has('newPassword')){
+            User::where('id', $request->user)->update(['password' => Hash::make($request->input('newPassword'))]);
+        }
+
+        if($url !== null){
+            User::where('id', $request->user)->update(['profile_image' => $url]);
+        }
 
         return redirect()->route('profile');
     }

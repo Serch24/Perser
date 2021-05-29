@@ -7,17 +7,16 @@
         </div>
     @endauth
     <div class="container-fluid">
-        <div class="card-columns">
+        <div class="row row-cols-1 row-cols-md-5">
             @foreach($products as $product) 
-                <div class="card">
-                    <div class="card-body">
-                    <img src="{{$product->image}}" class="card-img-top" alt="teto alt">
-                        <p class="card-title">{{$product->name}}</p>
-                        <div class="card-text text-wrap h5">
-                            {{$product->description}}
+                <div class="col mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img src="{{$product->image}}" class="card-img-top" alt="teto alt">
+                            <p class="card-title">{{$product->name}}</p>
+                            <p class="text-success font-weight-bold">{{$product->price}}€</p>
+                            <a href="/product/{{$product->id}}" class="btn btn-primary">See product</a>
                         </div>
-                        <p class="text-success font-weight-bold">{{$product->price}}€</p>
-                        <a href="/product/{{$product->id}}" class="btn btn-primary">See product</a>
                     </div>
                 </div>
             @endforeach

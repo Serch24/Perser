@@ -109,11 +109,15 @@ class ProductsController extends Controller
 
     public function buy(Products $product)
     {
-        return view('products.form',["product" => $product]);
+        return view('products.buy', ["product" => $product]);
     }
 
     public function cart(Products $product)
     {
         dd($product);
+    }
+
+    public function buyProduct(Request $request){
+        dd($request);
     }
 }

@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
-            bbbbbb
+            <h3>Comments on your products</h3>
         </div>
     </div>
 </div>
