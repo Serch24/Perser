@@ -13,4 +13,8 @@ class hasUploadProducts extends Model
     protected $table = 'has_upload_products';
 
     protected $fillable = ['user_id','product_id'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
-use App\Http\Controllers\Controller;
-use App\Models\hasUploadProducts;
 use Illuminate\Http\Request;
+use App\Models\hasBoughtProducts;
+use App\Models\hasUploadProducts;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductsController extends Controller
 {
@@ -52,6 +54,7 @@ class ProductsController extends Controller
             'price' => $request->input('price'),
             'description' => $request->input('description'),
             'image' => $url ?? null,
+            'available' => true
         ]);
 
         hasUploadProducts::create([
@@ -118,6 +121,26 @@ class ProductsController extends Controller
     }
 
     public function buyProduct(Request $request){
-        dd($request);
+        $user = Auth::user();
+        $product = Products::find($request->input('idProduct'));
+
+        if($user->money === null || $user->money < $product->price){
+            return Redirect::back()->withErrors(['You do not have enough money!']);
+        }
+
+        // create a record in the table hasBoughtProduct
+        hasBoughtProducts::create([
+            'user_id' => $user->id,
+            'product_id' => $request->input('idProduct')
+        ]);
+
+        // update available column
+        $product->update(['available' => false]);
+
+        // increment money of the user whose upload the product
+        $product->user()->increment('money', $product->price);
+        $user->decrement('money', $product->price);
+
+        return redirect('/');
     }
 }
