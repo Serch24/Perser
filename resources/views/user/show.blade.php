@@ -1,6 +1,23 @@
 @extends('layouts.master')
+@section('tittle','Profile - perser')
 @section('body')
 <div class="container">
+
+    <div class="row my-4">
+        @if($errors->any()) 
+            <div class="alert alert-danger w-100 text-center">
+                <h3 class="text-center">Errors</h3>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
+
+    {{-- products on sale --}}
     <div class="row justify-content-around bg-custom">
         <div class="col-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center justify-content-center">
             <div class="d-flex justify-content-center">
@@ -15,6 +32,7 @@
             <a href="#" class="btn btn-danger my-2">Eliminar</a>
         </div>
 
+        {{-- products on sale --}}
         <div class="col-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
             <h2>Your products on sale</h2>
             <div class="row">
@@ -24,6 +42,7 @@
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Sold</th>
                                 <th scope="col">Edit</th>
                             </tr>
                         </thead>
@@ -32,6 +51,7 @@
                                 <tr>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}€</td>
+                                    <td><p class="font-weight-bold">{{ $product->available === 0 ? 'yes' : 'no' }}</p></td>
                                     <td><a href="{{route('show-product',[$product->id])}}" class="btn btn-secondary" data-placement='top' data-toggle="tooltip" title="Edit">
                                         <i class="far fa-edit"></i>
                                         </a>
@@ -44,12 +64,39 @@
             </div>
         </div>
 
+        {{-- Products purchased --}}
         <div class="col-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
-            aaaaa
+            <h3>Purched Products</h3>
+            <div class="row">
+                @if(count($purched) !== 0)
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($purched as $product)
+                                <tr>
+                                    <td>{{ $product->name ?? ''}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="col">
+                        <a href="{{ route('purched') }}" class="btn btn-primary">show all</a>
+                    </div>
+                @else
+                    <div class="col">
+                        <p class="text-center mt-3">No purched products...</p>
+                    </div>
+                @endisset
+            </div>
         </div>
 
+        {{-- Products purchased --}}
         <div class="col-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
-            <h3>Comments on your products</h3>
+            aaaa
         </div>
     </div>
 </div>

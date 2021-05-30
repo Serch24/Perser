@@ -56,9 +56,13 @@ class UserController extends Controller
     public function show()
     {
         $user = Auth::user();
-        $products = $user->uploadProducts()->get();
+        $uploadProducts = $user->uploadProducts()->get();
+        $purchedProducts = $user->purchedProducts()->get();
 
-        return view('user.show', ['user' => $user, 'products' => $products]);
+        return view('user.show', [
+            'user' => $user,
+            'products' => $uploadProducts,
+            'purched' => $purchedProducts]);
     }
 
     /**
@@ -86,7 +90,7 @@ class UserController extends Controller
             'last_name'     => ['sometimes', 'string','nullable'],
             'oldPassword'   => ['required_with:newPassword'],
             'newPassword'   => ['required_with:oldPassword', Password::min('8')->mixedCase()],
-            'file'          => ['sometimes', 'required', 'image' , 'mimes:jpeg,png,jpg,gif,svg', 'dimensions:max_width=641,max_height=427']
+            'file'          => ['sometimes', 'required', 'image' , 'mimes:jpeg,png,jpg,gif,svg', 'dimensions:max_width=1366,max_height=768']
         ]);
 
         // get the user in the input hidden

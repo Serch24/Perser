@@ -42,7 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // return the relation of the table has_uppload_products
     public function uploadProducts(){
         return $this->belongsToMany(Products::class,'has_upload_products','user_id','product_id');
+    }
+
+    // return the relation of the table has_bougth_products
+    public function purchedProducts(){
+        return $this->belongsToMany(Products::class,'has_bought_products','user_id','product_id');
     }
 }

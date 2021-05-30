@@ -37,7 +37,7 @@ class ProductsController extends Controller
     {
         $currentUser = Auth::user()->id;
         $request->validate([
-            'file' => 'image',
+            'file' => ['required', 'image' , 'mimes:jpeg,png,jpg,gif,svg', 'dimensions:max_width=641,max_height=427'],
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'required',
@@ -66,7 +66,6 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -74,6 +73,10 @@ class ProductsController extends Controller
     public function show(Products $product)
     {
         return view('products.show', ['product' => $product]);
+    }
+
+    public function showPurched(){
+        return view('products.showPurched');
     }
 
     /**

@@ -7,7 +7,7 @@
         </div>
     @endauth
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-5">
+        <div class="row row-cols-1 row-cols-md-4">
             @foreach($products as $product) 
                 <div class="col mb-4">
                     <div class="card h-100">
