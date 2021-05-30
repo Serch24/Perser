@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,12 +42,14 @@ class User extends Authenticatable
     ];
 
     // return the relation of the table has_uppload_products
-    public function uploadProducts(){
-        return $this->belongsToMany(Products::class,'has_upload_products','user_id','product_id');
+    public function uploadProducts()
+    {
+        return $this->belongsToMany(Products::class, 'has_upload_products', 'user_id', 'product_id');
     }
 
     // return the relation of the table has_bougth_products
-    public function purchedProducts(){
-        return $this->belongsToMany(Products::class,'has_bought_products','user_id','product_id');
+    public function purchedProducts()
+    {
+        return $this->belongsToMany(Products::class, 'has_bought_products', 'user_id', 'product_id');
     }
 }

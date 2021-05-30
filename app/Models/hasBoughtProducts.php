@@ -11,6 +11,5 @@ class hasBoughtProducts extends Model
 
     protected $table = 'has_bought_products';
 
-    protected $fillable = ['user_id','product_id'];
-
+    protected $fillable = ['user_id', 'product_id'];
 }

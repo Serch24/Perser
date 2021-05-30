@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -15,6 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $products = Products::where('available', true)->orderBy('created_at', 'desc')->paginate(10);
+
         return view('home', ['products' => $products]);
     }
 }
