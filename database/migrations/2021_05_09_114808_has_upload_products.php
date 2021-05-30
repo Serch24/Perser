@@ -31,6 +31,5 @@ class HasUploadProducts extends Migration
     public function down()
     {
         Schema::dropIfExists('has_upload_products');
-
     }
 }

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home de la página
-Route::get('/',[HomeController::class,'index'])->name('home'); 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 // products
@@ -28,8 +28,8 @@ Route::get('/product/buy/{product}', [ProductsController::class, 'buy'])->name('
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('show-product');
 
 Route::post('/product/cart/{product}', [ProductsController::class, 'cart'])->name('cart');
-Route::post('/product',[ProductsController::class, 'store']);
-Route::post('/product/buy',[ProductsController::class, 'buyProduct']);
+Route::post('/product', [ProductsController::class, 'store']);
+Route::post('/product/buy', [ProductsController::class, 'buyProduct']);
 
 // Users
 Route::get('/profile/', [UserController::class, 'show'])->name('profile');
