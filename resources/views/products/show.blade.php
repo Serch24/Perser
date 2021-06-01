@@ -25,5 +25,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            @foreach ($productsRelated as $product)
+                <p>{{$product}}</p>
+            @endforeach
+        </div>
     </div>
 @endsection

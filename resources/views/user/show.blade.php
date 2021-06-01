@@ -17,7 +17,6 @@
     </div>
 
 
-    {{-- products on sale --}}
     <div class="row justify-content-around bg-custom">
         <div class="col-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center justify-content-center">
             <div class="d-flex justify-content-center">
@@ -34,9 +33,11 @@
 
         {{-- products on sale --}}
         <div class="col-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
-            <h2>Your products on sale</h2>
-            <div class="row">
-                @isset($products)
+            <div class="row h-100">
+                <div class="col-12">
+                    <h2>Your products on sale</h2>
+                </div>
+                @if(count($products) !== 0)
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -60,6 +61,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                @else
+                    <div class="col-12 d-flex align-items-start justify-content-center text-wrap">
+                        <p class="">No products on sale...</p>
+                    </div>
                 @endisset
             </div>
         </div>

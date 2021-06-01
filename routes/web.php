@@ -34,5 +34,4 @@ Route::post('/product/buy', [ProductsController::class, 'buyProduct']);
 // Users
 Route::get('/profile/', [UserController::class, 'show'])->name('profile');
 Route::get('/profile/edit', [UserController::class, 'edit'])->name('edit-profile');
-
 Route::patch('/profile/update', [UserController::class, 'update'])->name('update-profile');

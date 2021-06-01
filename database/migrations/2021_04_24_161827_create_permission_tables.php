@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreatePermissionTables extends Migration
@@ -37,6 +38,18 @@ class CreatePermissionTables extends Migration
 
             $table->unique(['name', 'guard_name']);
         });
+
+        // default roles by serch :)
+        DB::table('roles')->insert([
+            [
+                'name' => 'admin',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'normal',
+                'guard_name' => 'web'
+            ]
+        ]);
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('permission_id');

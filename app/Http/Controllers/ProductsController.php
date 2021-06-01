@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categories;
 use App\Models\hasBoughtProducts;
 use App\Models\hasUploadProducts;
 use App\Models\Products;
@@ -24,7 +25,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.upload');
+        $categories = categories::get();
+        return view('products.upload',['categories' => $categories]);
     }
 
     /**
@@ -36,11 +38,13 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $currentUser = Auth::user()->id;
+
         $request->validate([
             'file' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'dimensions:max_width=641,max_height=427'],
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'required',
+            'category' => 'required'
         ]);
 
         $url = null;
@@ -49,12 +53,14 @@ class ProductsController extends Controller
             $url = Storage::url($img_url);
         }
 
+        // store data
         $product = Products::create([
             'name' => $request->input('name'),
             'price' => $request->input('price'),
             'description' => $request->input('description'),
             'image' => $url ?? null,
             'available' => true,
+            'category_id' => $request->input('category')
         ]);
 
         hasUploadProducts::create([
@@ -71,12 +77,14 @@ class ProductsController extends Controller
      */
     public function show(Products $product)
     {
-        return view('products.show', ['product' => $product]);
+        $categoryProducts = Products::where('category_id', $product->category_id);
+        return view('products.show', ['product' => $product, 'productsRelated' => $categoryProducts]);
     }
 
     public function showPurched()
     {
-        return view('products.showPurched');
+        $products = Auth::user()->purchedProducts()->get();
+        return view('products.showPurched',['products' => $products]);
     }
 
     /**

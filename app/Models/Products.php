@@ -15,6 +15,7 @@ class Products extends Model
         'description',
         'image',
         'available',
+        'category_id'
     ];
 
     // get the user from hasUploadProducts table.
