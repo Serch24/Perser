@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('tittle','Profile - perser')
+@section('bread', Breadcrumbs::render('user'))
 @section('body')
 <div class="container">
 

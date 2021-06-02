@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('bread', Breadcrumbs::render('product-show', $product))
 @section('body')
     <div class="container-fluid">
         <div class="card mb-3">

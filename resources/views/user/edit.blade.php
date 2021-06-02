@@ -1,27 +1,28 @@
 @extends('layouts.master')
+@section('bread', Breadcrumbs::render('edit-user'))
 @section('body')
 <div class="container">
 
-    <div class="row my-4">
         @if($errors->any()) 
-            <div class="alert alert-danger w-100 text-center">
-                <h3 class="text-center">Errors</h3>
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            <div class="row my-4">
+                <div class="alert alert-danger w-100 text-center">
+                    <h3 class="text-center">Errors</h3>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         @endif
-    </div>
 
     <div class="row text-center justify-content-around">
-        <div class="col-3">
-            <div class="w-75">
+        <div class="col-md-3 bg-dark d-flex">
+            <div class="w-50">
                 <img src="{{$user->profile_image ?? asset('default-profile.png')}}" alt="profile image" class="img-fluid img-thumbnail">
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-sm-8">
             <form action="/profile/update" method="POST" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf

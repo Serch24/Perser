@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('bread', Breadcrumbs::render('home'))
 @section('body')
     <h1 class="text-center">Perser</h1>
     @auth

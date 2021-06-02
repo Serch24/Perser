@@ -80,7 +80,7 @@
 
         <!-- Page Content -->
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
                 <div class="container-fluid">
                     <div class="row w-100 justify-content-around">
                         <div class="col-5">
@@ -91,7 +91,6 @@
                                         <i class="fas fa-bars"></i>
                                     </button>
                                 </div>
-
                             </div>
                         </div> 
 
@@ -137,6 +136,13 @@
                     </div>
                 </div>
             </nav>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 d-flex justify-content-center">
+                        @yield('bread')
+                    </div>
+                </div>
+            </div>
             @yield('body')
         </div>
         <!-- Dark Overlay element -->

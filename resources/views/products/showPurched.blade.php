@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @section('tittle','Purched - perser')
+@section('bread', Breadcrumbs::render('purched-product', $products[0]))
 @section('body')
     <div class="container">
-        @if(isset($products))
+        @if(isset($products) && count($products) !== 0)
             <table class="table text-center">
                 <thead>
                     <tr>

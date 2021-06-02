@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('bread', Breadcrumbs::render('product-create'))
 @section('body')
 <div class="container">
     <form action="/product" method="POST" enctype="multipart/form-data">

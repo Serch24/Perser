@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('bread', Breadcrumbs::render('buy-product', $product))
 @section('body')
 <form action="/product/buy" name="myform" method="POST">
     @csrf
