@@ -43,12 +43,12 @@ class CreatePermissionTables extends Migration
         DB::table('roles')->insert([
             [
                 'name' => 'admin',
-                'guard_name' => 'web'
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'normal',
-                'guard_name' => 'web'
-            ]
+                'guard_name' => 'web',
+            ],
         ]);
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
