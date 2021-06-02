@@ -26,7 +26,8 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = categories::get();
-        return view('products.upload',['categories' => $categories]);
+
+        return view('products.upload', ['categories' => $categories]);
     }
 
     /**
@@ -44,7 +45,7 @@ class ProductsController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'required',
-            'category' => 'required'
+            'category' => 'required',
         ]);
 
         $url = null;
@@ -60,7 +61,7 @@ class ProductsController extends Controller
             'description' => $request->input('description'),
             'image' => $url ?? null,
             'available' => true,
-            'category_id' => $request->input('category')
+            'category_id' => $request->input('category'),
         ]);
 
         hasUploadProducts::create([
@@ -78,13 +79,15 @@ class ProductsController extends Controller
     public function show(Products $product)
     {
         $categoryProducts = Products::where('category_id', $product->category_id);
+
         return view('products.show', ['product' => $product, 'productsRelated' => $categoryProducts]);
     }
 
     public function showPurched()
     {
         $products = Auth::user()->purchedProducts()->get();
-        return view('products.showPurched',['products' => $products]);
+
+        return view('products.showPurched', ['products' => $products]);
     }
 
     /**

@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 
 class CreateCategoriesTable extends Migration
 {
@@ -23,23 +23,23 @@ class CreateCategoriesTable extends Migration
         // Insert some stuff
         DB::table('category')->insert([
             [
-                'name' => 'Sport'
+                'name' => 'Sport',
             ],
             [
-                'name' => 'Technology'
+                'name' => 'Technology',
             ],
             [
-                'name' => 'Food'
+                'name' => 'Food',
             ],
             [
-                'name' => 'Games'
+                'name' => 'Games',
             ],
             [
-                'name' => 'Clothes'
+                'name' => 'Clothes',
             ],
             [
-                'name' => 'Agliculture'
-            ]
+                'name' => 'Agliculture',
+            ],
         ]);
     }
 
