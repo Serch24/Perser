@@ -9,7 +9,7 @@
                     <h3 class="text-center">Errors</h3>
                     <ul>
                         @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li> - {{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -17,12 +17,12 @@
         @endif
 
     <div class="row text-center justify-content-around">
-        <div class="col-md-3 bg-dark d-flex">
+        <div class="col-lg-3 d-flex justify-content-center mb-2">
             <div class="w-50">
                 <img src="{{$user->profile_image ?? asset('default-profile.png')}}" alt="profile image" class="img-fluid img-thumbnail">
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-lg-8">
             <form action="/profile/update" method="POST" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf

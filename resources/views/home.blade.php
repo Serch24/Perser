@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('bread', Breadcrumbs::render('home'))
 @section('body')
-    <h1 class="text-center">Perser</h1>
+    <h1 class="text-center" style="font-family: 'Sigmar One', cursive;">Perser</h1>
     @auth
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex justify-content-end my-5">
             <a href="/product/create" class="btn btn-primary">Upload your product</a>
         </div>
     @endauth

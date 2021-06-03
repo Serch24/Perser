@@ -189,3 +189,16 @@ a.article:hover {
 .bg-custome{
     background-color: #E2E8F0 !important;
 }
+
+li{
+    list-style: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+
+button{
+    font-family: sans-serif !important;
+}
+
+h3{
+    font-family: monospace !important;
+}

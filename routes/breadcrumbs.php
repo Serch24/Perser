@@ -54,8 +54,8 @@ Breadcrumbs::for('buy-product', function (BreadcrumbTrail $trail, Products $prod
     $trail->push($product->name, route('buy', $product));
 });
 
-// Home > Product > purched
+// Home > profile > purched
 Breadcrumbs::for('purched-product', function (BreadcrumbTrail $trail, Products $product) {
-    $trail->parent('products');
+    $trail->parent('user');
     $trail->push('purched', route('buy', $product));
 });

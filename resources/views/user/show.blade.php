@@ -4,6 +4,7 @@
 @section('body')
 <div class="container">
 
+    {{-- errors --}}
     <div class="row my-4">
         @if($errors->any()) 
             <div class="alert alert-danger w-100 text-center">
@@ -17,9 +18,8 @@
         @endif
     </div>
 
-
     <div class="row justify-content-around bg-custom">
-        <div class="col-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center justify-content-center">
+        <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="w-50">
                     <img src="{{ $user->profile_image ?? asset('default-profile.png') }}" class="img-fluid" alt="profile image">
@@ -33,7 +33,7 @@
         </div>
 
         {{-- products on sale --}}
-        <div class="col-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
+        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
             <div class="row h-100">
                 <div class="col-12">
                     <h2>Your products on sale</h2>
@@ -71,7 +71,7 @@
         </div>
 
         {{-- Products purchased --}}
-        <div class="col-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
+        <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
             <h3>Purched Products</h3>
             <div class="row">
                 @if(count($purched) !== 0)
@@ -101,7 +101,7 @@
         </div>
 
         {{-- Products purchased --}}
-        <div class="col-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
+        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
             aaaa
         </div>
     </div>

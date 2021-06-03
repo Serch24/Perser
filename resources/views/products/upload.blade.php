@@ -12,7 +12,7 @@
                     <h3 class="text-center">Errors</h3>
                     <ul>
                         @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li> - {{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
