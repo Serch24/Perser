@@ -105,47 +105,40 @@
                             </div>
                         </div>
 
-                        <div class="col-4">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="nav navbar-nav ml-auto">
-                                    @if(!Auth::check())
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('login') }}">
-                                                <i class="fas fa-sign-in-alt"></i> Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">
-                                                <i class="fas fa-sign-out-alt"></i>Register</a>
-                                        </li>
-                                    @else
-                                        <div class="row justify-content-md-center ">
+                        <div class="col-4 d-flex justify-content-center ">
+                            @if(!Auth::check())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <i class="fas fa-sign-in-alt"></i> Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fas fa-sign-out-alt"></i>Register</a>
+                                </li>
+                            @else
+                                {{-- profile --}}
+                                <div class="col-sm-3 align-self-center d-flex justify-content-end">
+                                    <a href="{{ route('profile') }}"
+                                        data-placement='bottom' data-toggle="tooltip" title="Profile">
+                                        <i class="fas fa-user-alt fa-2x text-primary"></i>
+                                    </a>
+                                </div>
 
-                                            {{-- profile --}}
-                                            <div class="col">
-                                                <a href="{{ route('profile') }}"
-                                                    data-placement='bottom' data-toggle="tooltip" title="Profile"
-                                                    class="nav-link">
-                                                    <i class="fas fa-user-alt fa-2x text-primary"></i>
-                                                </a>
-                                            </div>
-
-                                            {{-- log out --}}
-                                            <div class="col">
-                                                <form action="/logout" method="post" id="logOutForm">
-                                                    @csrf
-                                                    <li class="nav-item" data-toggle="modal" data-target="#close">
-                                                        <button class="btn btn-link nav-link" data-placement='bottom'
-                                                            data-toggle="tooltip" title="Sign out" id="logOut">
-                                                            <i class="fas fa-sign-out-alt fa-2x text-primary"></i>
-                                                        </button>
-                                                    </li>
-                                                    @include('bootstrapjs.modal-close')
-                                                </form>
-                                            </div>
+                                {{-- log out --}}
+                                <div class="col-sm-3">
+                                    <form action="/logout" method="post" id="logOutForm">
+                                        @csrf
+                                        <div data-toggle="modal" data-target="#close">
+                                            <button class="btn btn-link nav-link" data-placement='bottom'
+                                                data-toggle="tooltip" title="Sign out" id="logOut">
+                                                <i class="fas fa-sign-out-alt fa-2x text-primary"></i>
+                                            </button>
                                         </div>
-                                    @endif
-                                </ul>
-                            </div>
+                                        
+                                        @include('bootstrapjs.modal-close')
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

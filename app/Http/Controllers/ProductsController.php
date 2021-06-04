@@ -78,7 +78,7 @@ class ProductsController extends Controller
      */
     public function show(Products $product)
     {
-        $categoryProducts = Products::where('category_id', $product->category_id);
+        $categoryProducts = Products::where('category_id', $product->category_id)->get();
 
         return view('products.show', ['product' => $product, 'productsRelated' => $categoryProducts]);
     }

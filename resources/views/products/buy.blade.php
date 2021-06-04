@@ -35,7 +35,7 @@
         </div>
         <input type="hidden" name="idProduct" value="{{$product->id}}">
         <div class="row justify-content-end">
-            <div class="col-1">
+            <div class="col d-flex justify-content-end">
                 <button type="button" id="buyButton" class="btn btn-success">Buy</button>
             </div>
         </div>

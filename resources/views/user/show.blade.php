@@ -22,19 +22,18 @@
         <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="w-50">
-                    <img src="{{ $user->profile_image ?? asset('default-profile.png') }}" class="img-fluid" alt="profile image">
+                    <img src="{{ $user->profile_image ?? asset('default-profile.png') }}" class="img-fluid rounded-circle img-thumbnail" alt="profile image">
                 </div>
             </div>
             <h2>{{ $user->name ?? 'jhon' }}
                 {{ $user->last_name ?? 'doe' }}</h2>
             <span class="text-muted d-block">{{$user->money ?? 'No money'}} {{ isset($user->money) ? '€' : ''}}</span>
-            <a href="{{ route('edit-profile') }}" class="btn btn-secondary my-2">Editar</a>
-            <a href="#" class="btn btn-danger my-2">Eliminar</a>
+            <a href="{{ route('edit-profile') }}" class="btn btn-secondary my-2">Edit</a>
         </div>
 
         {{-- products on sale --}}
-        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
-            <div class="row h-100">
+        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" style="height: 300px;overflow-y: scroll !important">
+            <div class="row">
                 <div class="col-12">
                     <h2>Your products on sale</h2>
                 </div>
@@ -71,7 +70,7 @@
         </div>
 
         {{-- Products purchased --}}
-        <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
+        <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" id="purched" style="height: 300px;overflow-y: scroll !important">
             <h3>Purched Products</h3>
             <div class="row">
                 @if(count($purched) !== 0)
@@ -100,9 +99,9 @@
             </div>
         </div>
 
-        {{-- Products purchased --}}
-        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center">
-            aaaa
+        {{-- commets on your products--}}
+        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" style="height: 300px;overflow-y: scroll !important">
+            some comments on your products
         </div>
     </div>
 </div>
