@@ -80,12 +80,12 @@ class ProductsController extends Controller
     public function show(Products $product)
     {
         $categoryProducts = Products::where('category_id', $product->category_id)->get();
-        $comments = Comments::where('product_id', $product->id)->orderBy('created_at','desc')->get();
+        $comments = Comments::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
 
         return view('products.show', [
             'product' => $product,
             'productsRelated' => $categoryProducts,
-            'comments' => $comments
+            'comments' => $comments,
         ]);
     }
 
