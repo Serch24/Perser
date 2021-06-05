@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
@@ -35,3 +36,7 @@ Route::post('/product/buy', [ProductsController::class, 'buyProduct']);
 Route::get('/profile/', [UserController::class, 'show'])->name('profile');
 Route::get('/profile/edit', [UserController::class, 'edit'])->name('edit-profile');
 Route::patch('/profile/update', [UserController::class, 'update'])->name('update-profile');
+
+// comments
+
+Route::post('comments/{product}', [CommentsController::class, 'getJsonProductComments'])->name('productComments');

@@ -23,4 +23,7 @@ class Products extends Model
     {
         return hasUploadProducts::where('product_id', $this->id)->first()->user ?? '';
     }
+
+    public function comments(){
+    }
 }
