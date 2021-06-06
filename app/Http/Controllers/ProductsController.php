@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\categories;
 use App\Models\Comments;
 use App\Models\hasBoughtProducts;
@@ -79,11 +80,17 @@ class ProductsController extends Controller
      */
     public function show(Products $product)
     {
-        $categoryProducts = Products::where('category_id', $product->category_id)->get();
-        $comments = Comments::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
+        $categoryProducts = Products::where('available', true)
+                                    ->where('category_id', $product->category_id)
+                                    ->whereNotIn('id', [$product->id])
+                                    ->latest()
+                                    ->paginate(8);
 
+        // $comments = Comments::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
+        $comments = Comments::where('product_id', $product->id)->latest()->get();
+        // dd($comments);
         return view('products.show', [
-            'product' => $product,
+            'productt' => $product,
             'productsRelated' => $categoryProducts,
             'comments' => $comments,
         ]);
@@ -119,25 +126,18 @@ class ProductsController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function indexCategory(categories $category){
+        $products = Products::where('category_id', $category->id)
+                                ->where('available', true)
+                                ->latest()
+                                ->paginate(10);
+
+        return view('home', ['products' => $products]);
     }
 
     public function buy(Products $product)
     {
         return view('products.buy', ['product' => $product]);
-    }
-
-    public function cart(Products $product)
-    {
-        dd($product);
     }
 
     public function buyProduct(Request $request)
@@ -161,6 +161,8 @@ class ProductsController extends Controller
         // increment money of the user whose upload the product
         $product->user()->increment('money', $product->price);
         $user->decrement('money', $product->price);
+
+        Cart::where('product_id', $product->id)->delete();
 
         return redirect('/');
     }

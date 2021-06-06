@@ -18,7 +18,7 @@
 
     <div class="row text-center justify-content-around">
         <div class="col-lg-3 d-flex justify-content-center mb-2">
-            <div class="w-50">
+            <div class="w-100">
                 <img src="{{$user->profile_image ?? asset('default-profile.png')}}" alt="profile image" class="img-fluid img-thumbnail">
             </div>
         </div>

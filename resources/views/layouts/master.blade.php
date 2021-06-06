@@ -53,38 +53,34 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>Heading</p>
                 <li>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle collapsed text-white">
-                        <i class="fas fa-home"></i> Products</a>
+                        <i class="fas fa-briefcase"></i> Products
+                    </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#" class="text-white">Home 1</a>
+                            <a href="{{ route('category', ['category' => 1]) }}" class="text-white">Sport</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white">Home 2</a>
+                            <a href="{{ route('category', ['category' => 2]) }}" class="text-white">Technology</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white">Home 3</a>
+                            <a href="{{ route('category', ['category' => 3]) }}" class="text-white">Games</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('category', ['category' => 5]) }}" class="text-white">Clothes</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="text-white">About</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                        class="dropdown-toggle collapsed text-white">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('profile') }}" class="text-white">
+                        <i class="fas fa-user"></i>  Profile
+                    </a>
+
+                    <a href="{{ route('show-cart') }}" class="text-white">
+                        <i class="fas fa-shopping-cart"></i>  Cart
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -105,7 +101,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4 d-flex justify-content-center ">
+                        <div class="col-7 d-flex justify-content-end">
                             @if(!Auth::check())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">
@@ -116,27 +112,36 @@
                                         <i class="fas fa-sign-out-alt"></i>Register</a>
                                 </li>
                             @else
-                                {{-- profile --}}
-                                <div class="col-sm-3 align-self-center d-flex justify-content-end">
-                                    <a href="{{ route('profile') }}"
-                                        data-placement='bottom' data-toggle="tooltip" title="Profile">
-                                        <i class="fas fa-user-alt fa-2x text-primary"></i>
-                                    </a>
-                                </div>
+                                <div class="w-100 d-flex justify-content-end">
+                                    {{-- profile --}}
+                                    <div class="align-self-center">
+                                        <a href="{{ route('profile') }}"
+                                            data-placement='bottom' data-toggle="tooltip" title="Profile">
+                                            <i class="fas fa-user-alt fa-2x text-primary"></i>
+                                        </a>
+                                    </div>
 
-                                {{-- log out --}}
-                                <div class="col-sm-3">
-                                    <form action="/logout" method="post" id="logOutForm">
-                                        @csrf
-                                        <div data-toggle="modal" data-target="#close">
-                                            <button class="btn btn-link nav-link" data-placement='bottom'
-                                                data-toggle="tooltip" title="Sign out" id="logOut">
-                                                <i class="fas fa-sign-out-alt fa-2x text-primary"></i>
-                                            </button>
-                                        </div>
-                                        
-                                        @include('bootstrapjs.modal-close')
-                                    </form>
+                                    {{-- log out --}}
+                                    <div class="">
+                                        <form action="/logout" method="post" id="logOutForm">
+                                            @csrf
+                                            <div data-toggle="modal" data-target="#close">
+                                                <button class="btn btn-link nav-link" data-placement='bottom'
+                                                    data-toggle="tooltip" title="Sign out" id="logOut">
+                                                    <i class="fas fa-sign-out-alt fa-2x text-primary"></i>
+                                                </button>
+                                            </div>
+                                            
+                                            @include('bootstrapjs.modal-close')
+                                        </form>
+                                    </div>
+
+                                    {{-- cart --}}
+                                    <div class="align-self-center">
+                                        <a href="{{route('show-cart')}}" data-placement="bottom" data-toggle="tooltip" title="Show cart">
+                                            <i class="fas fa-shopping-cart fa-2x"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             @endif
                         </div>

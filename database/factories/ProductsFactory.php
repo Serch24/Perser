@@ -23,8 +23,8 @@ class ProductsFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'price' => $this->faker->numberBetween(100, 10000),
-            'description' => $this->faker->text(500),
+            'price' => $this->faker->numberBetween(50, 999),
+            'description' => $this->faker->text(1400),
             'image' => $this->faker->imageUrl(1366, 768),
             'available' => $this->faker->boolean(50),
             'category_id' => $this->faker->numberBetween(1, 6),

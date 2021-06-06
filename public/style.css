@@ -202,3 +202,7 @@ button{
 h3{
     font-family: monospace !important;
 }
+
+i{
+    cursor: pointer;
+}

@@ -23,8 +23,8 @@
                 </tbody>
             </table>
         @else
-            <div class="col">
-                <p>No purched yes :(</p>
+            <div class="col-lg-12">
+                <h2>No purched yes :(</h2>
             </div>
         @endif 
     </div>

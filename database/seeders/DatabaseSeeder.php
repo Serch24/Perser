@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comments;
 use App\Models\hasUploadProducts;
 use App\Models\Products;
 use App\Models\User;
@@ -24,6 +25,10 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $user->id,
                 'product_id' => $product->id,
             ]);
+            $comment = Comments::factory()->create();
+            $comment->user_id = $user->id;
+            $comment->product_id = $product->id;
+            $comment->save();
         });
     }
 }

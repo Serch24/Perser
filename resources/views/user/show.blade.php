@@ -44,7 +44,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Sold</th>
-                                <th scope="col">Edit</th>
+                                <th scope="col">Show</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,8 +53,9 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}€</td>
                                     <td><p class="font-weight-bold">{{ $product->available === 0 ? 'yes' : 'no' }}</p></td>
-                                    <td><a href="{{route('show-product',[$product->id])}}" class="btn btn-secondary" data-placement='top' data-toggle="tooltip" title="Edit">
-                                        <i class="far fa-edit"></i>
+                                    <td>
+                                        <a href="{{route('show-product',[$product->id])}}" data-placement='top' data-toggle="tooltip" title="Show">
+                                            <i class="far fa-eye"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -70,7 +71,7 @@
         </div>
 
         {{-- Products purchased --}}
-        <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" id="purched" style="height: 300px;overflow-y: scroll !important">
+        <div class="col-md-4 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" id="purched" style="max-height: 300px;overflow-y: scroll !important">
             <h3>Purched Products</h3>
             <div class="row">
                 @if(count($purched) !== 0)
@@ -100,8 +101,39 @@
         </div>
 
         {{-- commets on your products--}}
-        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" style="height: 300px;overflow-y: scroll !important">
-            some comments on your products
+        <div class="col-md-7 border bg-white my-2 shadow-sm p-3 mb-5 rounded text-center" style="max-height: 300px;overflow-y: scroll !important">
+            @if (isset($comments) && count($comments) !== 0)
+                <div class="w-100" style="word-break: break-word;">
+                    <h3>Some comments on your products</h3>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product name</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">show</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($comments as $comment)
+                            <tr>
+                                <td>{{ $comment->product->name }}</td>
+                                <td>{{ $comment->comment}}</td>
+                                <td>
+                                    <a href="{{route('show-product', [ 'product' => $comment->product->id ])}}"
+                                        data-placement="top" data-toggle="tooltip" title="Show" >
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <div class="w-100" style="word-break: break-word">
+                    No comments on your products
+                </div>
+            @endif
         </div>
     </div>
 </div>

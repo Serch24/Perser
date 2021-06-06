@@ -22,7 +22,7 @@ class CommentsController extends Controller
         ]);
 
         // get all comments of this product in json format
-        $allComments = Comments::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
+        $allComments = Comments::where('product_id', $product->id)->latest()->get();
 
         // get users name for each comment
         $allUsers = collect([]);
