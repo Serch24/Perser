@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
-use App\Models\Comments;
-use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
@@ -63,10 +59,10 @@ class UserController extends Controller
         $uploadProducts = $user->uploadProducts()->orderBy('created_at', 'desc')->get();
         $purchedProducts = $user->purchedProducts()->get();
 
-        $commentsFiltered = $uploadProducts->reject(function($comment){
+        $commentsFiltered = $uploadProducts->reject(function ($comment) {
             return count($comment->comments) === 0;
         });
-        $commentsFiltered->each(function($comment)use($comments){
+        $commentsFiltered->each(function ($comment) use ($comments) {
             $comments->push($comment->comments->last());
         });
 
