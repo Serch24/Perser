@@ -126,7 +126,8 @@ class ProductsController extends Controller
         //
     }
 
-    public function indexCategory(categories $category){
+    public function indexCategory(categories $category)
+    {
         $products = Products::where('category_id', $category->id)
                                 ->where('available', true)
                                 ->latest()
